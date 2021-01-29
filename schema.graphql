@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Movie {
+  tmdbId: ID!
+  title: String!
+  runTime: Int!
+}
+
+type User {
+  id: ID!
+  username: String!
+}
+
+type Query {
+  movies(query: MovieQueryInput): [Movie!]!
+  login(password: String!, username: String!): User
+}
+
+input MovieQueryInput {
+  title: String!
+}
+
+type Mutation {
+  createMovie(input: CreateMovieInput!): Movie
+  register(password: String!, username: String!): User
+}
+
+input CreateMovieInput {
+  tmdbId: ID!
+}
