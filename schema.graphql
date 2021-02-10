@@ -15,7 +15,8 @@ type User {
 
 type Query {
   movies(query: MovieQueryInput): [Movie!]!
-  login(password: String!, username: String!): User
+  login(password: String!, username: String!): String
+  tryThis: User!
 }
 
 input MovieQueryInput {

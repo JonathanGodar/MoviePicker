@@ -16,7 +16,7 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.graphql',
-      context: ({req}) => ({currentUser: req.user, req})
+      context: ({req}) => ({headers: req.headers})
     }),
     TypeOrmModule.forRoot(
       {
