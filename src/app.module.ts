@@ -8,6 +8,7 @@ import { TmdbModule } from './tmdb/tmdb.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
+import { WatchGroupModule } from './watch-group/watch-group.module';
 
 @Module({
   controllers: [AppController],
@@ -26,6 +27,7 @@ import { ConfigModule } from '@nestjs/config';
     TmdbModule,
     AuthModule,
     UserModule,
+    WatchGroupModule,
   ],
 })
 export class AppModule {}
