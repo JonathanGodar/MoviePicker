@@ -1,4 +1,7 @@
+import { UseGuards } from "@nestjs/common";
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
+import { UserDecorator } from "src/auth/decorators/user.decorator";
+import { LoginGuard } from "src/auth/guards/login.guard";
 import { Movie } from "src/movie/entities/movie.entity";
 import { User } from "src/user/entities/user.entity";
 import { FieldResolver } from "type-graphql";
@@ -26,6 +29,13 @@ export class WatchGroupResolver {
     @Query(returns => [WatchGroup])
     async watchGroups(): Promise<WatchGroup[]> {
         return this.watchGroupService.findAll();
+    }
+
+
+    @UseGuards(LoginGuard)
+    @Query(returns=> [WatchGroup])
+    async myWatchGroups(@UserDecorator() user): Promise<WatchGroup[]> {
+        return this.watchGroupService.findAll({containsUser: user.id});
     }
 
     @Mutation(returns => WatchGroup)

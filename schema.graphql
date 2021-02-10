@@ -39,6 +39,7 @@ type Query {
   tryThis: User!
   users: [User!]!
   watchGroups: [WatchGroup!]!
+  myWatchGroups: [WatchGroup!]!
 }
 
 input MovieQueryInput {

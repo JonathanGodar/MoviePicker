@@ -9,6 +9,7 @@ import { WatchGroupToMovie } from './entities/watch-group-to-movie.entity';
 import { WatchGroupToUser } from './entities/watch-group-to-user.entity';
 import { WatchGroup } from './entities/watch-group.entity';
 import { IQueryMoviesOfWatchGroup } from './interfaces/query-movies-of-watch-group.interface';
+import { IQueryWatchGroup } from './interfaces/query-watch-group.interface';
 
 @Injectable()
 export class WatchGroupService {
@@ -62,8 +63,16 @@ export class WatchGroupService {
         this.watchGroupToMovieRepository.create({ movieId, watchGroupId }).save();
     }
 
-    async findAll(): Promise<WatchGroup[]> {
+    async findAll(query: IQueryWatchGroup = {}): Promise<WatchGroup[]> {
+        
+        if(query.containsUser !== undefined){
+            console.log( await this.watchGroupToUserRepository.find({where: {userId: query.containsUser}, relations: ['watchGroup']}));
+        }
+
         return this.watchGroupRepository.find();
+        // return this.watchGroupRepository.find({where: {
+
+        // }});
     }
 
     async createWatchGroup(): Promise<WatchGroup> {
