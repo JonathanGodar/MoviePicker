@@ -33,7 +33,6 @@ export class TmdbService {
     }
 
     async getByMovieId(id: number): Promise<MovieResponse>{
-        console.log("getting movie!");
         const request = await this.getMovieRequestById(id);
         if(request.status != HttpStatus.OK){
             throw new CouldNotFindMovieError();

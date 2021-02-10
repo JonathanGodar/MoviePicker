@@ -8,6 +8,7 @@ import { TmdbModule } from 'src/tmdb/tmdb.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Movie]), TmdbModule],
-  providers: [MovieResolver, MovieService]
+  providers: [MovieResolver, MovieService],
+  exports: [MovieService]
 })
-export class MovieModule {}
+export class MovieModule { }
